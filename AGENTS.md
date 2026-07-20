@@ -134,4 +134,6 @@ tool.** That is what keeps them from drifting.
   - what we are building (fill in per section 1).
 - `docs/adr/` - decision records (template + example).
 - `.claude/commands/` - the gates and iteration loop as runnable commands.
+- `.claude/agents/` - example subagents (read-only explorer, per-persona
+  reviewers, a doc-author constructor) for tools that support them.
 - Writing style for all docs: `docs/process/05-documentation-standards.md`.

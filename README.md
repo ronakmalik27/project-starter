@@ -32,6 +32,7 @@ AGENTS.md             Canonical agent operating contract (every AI tool reads th
 CLAUDE.md, GEMINI.md  Per-tool pointers to AGENTS.md + tool-specific notes
 SECURITY.md           Vulnerability-reporting policy
 CHANGELOG.md          Release history (Keep a Changelog)
+.claude/agents/       Example Claude Code subagents (explorer, reviewers, doc author)
 .claude/commands/     AI-agent commands: the review + iteration workflow, executable
 .github/              CI (pr-gate, merge-gate, cd stub, secrets sweep), copilot-instructions, templates, ruleset
 docs/
@@ -108,6 +109,16 @@ cannot drift.
 | `/sprint-retro` | The iteration retrospective |
 
 They are plain Markdown - portable to whichever agent harness you use.
+
+## AI-agent subagents
+
+`.claude/agents/` holds example Claude Code subagents - specialized agents with
+their own tools and model that the commands dispatch: a cheap read-only
+`codebase-explorer`, per-persona `doc-reviewer` and `code-reviewer`, and a
+`doc-author` constructor. They demonstrate the starter's routing (cheapest
+model that will do the job) and its author/reviewer separation. See
+`.claude/agents/README.md`; port the pattern to your tool if it is not Claude
+Code.
 
 ## License
 

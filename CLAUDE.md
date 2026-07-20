@@ -17,6 +17,8 @@ here - this file holds only Claude Code-specific notes.
   `/batch-commits`, `/sprint-plan`, `/sprint-execute`, `/sprint-qa`,
   `/sprint-retro`.
 - Parallelize with subagents where the work is independent (AGENTS.md section 5);
-  a final pass owns cross-cutting coherence.
+  a final pass owns cross-cutting coherence. `.claude/agents/` holds example
+  subagents (a read-only explorer, per-persona reviewers, a doc-author
+  constructor) with cheapest-sufficient model routing; see its README.
 - Put durable, cross-session facts in memory; keep temporary files in the
   scratchpad, never in the repo.
