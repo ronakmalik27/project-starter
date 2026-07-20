@@ -42,7 +42,10 @@ BANNED = {
 EXEMPT_DIRS = ("docs/reviews/", "docs/reference/")
 
 # Default scan set when no file arguments are given.
-DEFAULT_ROOTS = ("README.md", "CONTRIBUTING.md", "docs", ".claude", ".github")
+DEFAULT_ROOTS = (
+    "README.md", "CONTRIBUTING.md", "AGENTS.md", "CLAUDE.md", "GEMINI.md",
+    "docs", ".claude", ".github",
+)
 
 
 def iter_default_files() -> list[Path]:

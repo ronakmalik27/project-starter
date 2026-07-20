@@ -10,16 +10,33 @@ Use it as a GitHub template repository ("Use this template"), or copy the parts
 you want. Nothing here is stack-specific: it drives .NET, Node, Flutter, Python,
 or anything else once you fill in two Makefile targets.
 
+## Two ways to start
+
+However far along the idea is, the flow is the same, doc by doc: if the document
+already exists, refine it against the starter's outline and current industry
+standards; if not, create it from the skeleton.
+
+- **You already have material** (problem statement, market research, MVP specs,
+  brand or tech-stack decisions, ...): map each into the matching `docs/` file
+  and refine it.
+- **You have only an idea**: create each doc from its skeleton, starting with
+  `docs/00-vision.md`.
+
+Either way an AI agent can drive it: the operating contract in `AGENTS.md` tells
+any tool to work front to back and refine-or-create each doc.
+
 ## What is inside
 
 ```
+AGENTS.md             Canonical agent operating contract (every AI tool reads this)
+CLAUDE.md, GEMINI.md  Per-tool pointers to AGENTS.md + tool-specific notes
 .claude/commands/     AI-agent commands: the review + iteration workflow, executable
-.github/              CI (pr-gate, merge-gate, cd stub, secrets sweep), templates, ruleset
+.github/              CI (pr-gate, merge-gate, cd stub, secrets sweep), copilot-instructions, templates, ruleset
 docs/
   process/            The reusable workflow: principles, lifecycle, governance,
                       coding/testing/doc standards, review guidelines, iteration cycle
   adr/                Architecture Decision Records: a template + a worked example
-  01-14 *.md          Project-doc skeletons (PRD, SRS, UX, HLD, security, ...) to fill in
+  00, 01-15 *.md      Project-doc skeletons (vision, discovery, PRD, ..., brand) to fill in
   reviews/            Review logs (gate-light, bot-excluded)
   sprints/            One directory per iteration (plan/state/qa/retro)
 scripts/              Doc style + link checkers, git hooks
@@ -43,8 +60,8 @@ A short checklist after creating a repo from this template:
    (this template is pre-wired for CodeRabbit via `.coderabbit.yaml`) and,
    optionally, an advisory one (Gemini via `.gemini/config.yaml`). See
    docs/process/06-review-guidelines.md.
-7. Fill in the `docs/` skeletons for your project, deleting the ones you do not
-   need. Start with `docs/01-prd.md`.
+7. Fill in the `docs/` skeletons (refine-or-create, see "Two ways to start"),
+   deleting the ones you do not need. Start with `docs/00-vision.md`.
 8. Delete this section and rewrite the top of this README for your project.
 
 ## The workflow at a glance
@@ -63,6 +80,14 @@ A short checklist after creating a repo from this template:
   docs/process/08-iteration-cycle.md.
 
 Start with docs/process/README.md, then docs/process/00-principles.md.
+
+## Agent instructions
+
+`AGENTS.md` is the canonical operating contract every AI tool reads (Codex,
+Claude Code, Gemini CLI, Antigravity, Cursor, ...). `CLAUDE.md`, `GEMINI.md`,
+and `.github/copilot-instructions.md` are thin per-tool pointers to it plus
+tool-specific notes - anything meant for all agents lives in AGENTS.md, so they
+cannot drift.
 
 ## AI-agent commands
 

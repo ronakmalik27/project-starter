@@ -19,7 +19,10 @@ import sys
 from pathlib import Path
 
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
-DEFAULT_ROOTS = ("README.md", "CONTRIBUTING.md", "docs", ".claude", ".github")
+DEFAULT_ROOTS = (
+    "README.md", "CONTRIBUTING.md", "AGENTS.md", "CLAUDE.md", "GEMINI.md",
+    "docs", ".claude", ".github",
+)
 EXEMPT_DIRS = ("docs/reviews/", "docs/reference/")
 SKIP_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#")
 

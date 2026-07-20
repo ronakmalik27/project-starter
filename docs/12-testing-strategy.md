@@ -1,7 +1,8 @@
 # 12 - Testing Strategy
 
-<!-- Skeleton. Replace the hints with your product's specifics; delete sections
-     that do not apply and add your own. -->
+<!-- Starter skeleton. If your project already has this document, refine it
+     against these sections and current industry standards; otherwise create it
+     from here. Delete sections that do not apply and add your own. -->
 
 ## 1. Overview
 <!-- The overall approach to quality for this project. -->

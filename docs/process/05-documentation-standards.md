@@ -8,10 +8,14 @@ it.
 ## 1. The knowledge base
 
 The numbered docs in `docs/` are the source of truth. This template ships them
-as empty section-only skeletons for you to fill in:
+as section-only skeletons. For each one: if your project already has that
+document, refine it against the skeleton's outline and current industry
+standards; if not, create it from the skeleton. Fill them front to back:
 
 | Doc | Purpose |
 |---|---|
+| 00-vision.md | Vision and opportunity: problem, market, users, value, model, north-star |
+| 00-discovery.md | Discovery and MVP decision: research, competition, MVP scope + rationale |
 | 01-prd.md | Product requirements: who, what, why, success metrics |
 | 02-srs.md | Software requirements + system invariants |
 | 03-ux-user-flows.md | Screens and user flows |
@@ -26,6 +30,7 @@ as empty section-only skeletons for you to fill in:
 | 12-testing-strategy.md | The project's concrete test plan |
 | 13-engineering-playbook.md | How this project builds day to day |
 | 14-ai-integration.md | Where and how the product uses AI (if it does) |
+| 15-brand.md | Brand: name, positioning, voice, visual-identity direction, decisions |
 
 Delete the docs a given project does not need, and add your own. Keep the
 process docs (`docs/process/`) as the reusable "how we work" layer and these as
