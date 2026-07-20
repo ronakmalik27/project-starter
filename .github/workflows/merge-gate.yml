@@ -1,0 +1,59 @@
+# merge-gate: runs on merge to the default branch. Re-verifies main and, when
+# your project ships a container, builds and pushes an image tagged by the
+# merge commit SHA. The deploy step lives in cd-release-gate.yml and consumes
+# a chosen image digest from here.
+name: merge-gate
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: merge-gate-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify main
+    if: vars.CI_PAUSED != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Build and test
+        run: |
+          make ci-build
+          make ci-test
+
+  # Uncomment when your project ships a container. Pushes to GHCR via the
+  # built-in token (no stored registry secret), tagged by the merge SHA;
+  # `latest` is deliberately never deployed.
+  # build-push:
+  #   name: Build and push image
+  #   needs: verify
+  #   if: vars.CI_PAUSED != 'true'
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 20
+  #   permissions:
+  #     contents: read
+  #     packages: write
+  #   env:
+  #     IMAGE: ghcr.io/${{ github.repository }}
+  #   steps:
+  #     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+  #       with:
+  #         persist-credentials: false
+  #     - name: Log in to GHCR
+  #       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+  #     - name: Build and push (SHA-tagged)
+  #       run: |
+  #         set -euo pipefail
+  #         TAG="${IMAGE}:${GITHUB_SHA}"
+  #         docker build -t "$TAG" .
+  #         docker push "$TAG"
+  #         echo "Pushed $TAG"

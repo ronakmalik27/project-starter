@@ -1,0 +1,92 @@
+# pr-gate: the mechanical checks every pull request must pass.
+#
+# Design notes:
+# - Heavy lifting is delegated to `make` targets (hygiene, ci-build, ci-test)
+#   so you customize behaviour in the Makefile, not in this YAML. The stubs
+#   pass on an empty project and turn real as you fill them in.
+# - The job `name:` values are used as required-status-check contexts in
+#   .github/rulesets/main-protection.json. Renaming a job here silently hangs
+#   the merge gate on a phantom pending check - keep the two in sync.
+# - Actions are pinned by commit SHA. The blocking third-party reviewer
+#   (CodeRabbit) posts its own check via the GitHub App; it is not a CI job.
+name: pr-gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+
+# A new push to the same PR cancels the superseded run; on main, never cancel.
+concurrency:
+  group: pr-gate-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  # Optional zero-cost pause: set the repo variable CI_PAUSED=true to skip CI
+  # (e.g. to conserve Actions minutes) without editing this file. The `vars`
+  # context resolves before any runner is provisioned, so a paused job costs
+  # zero minutes. A skipped job still satisfies branch protection, so PRs stay
+  # mergeable - run the local gates (`make verify`) before pushing while paused.
+  # Resume with: gh variable set CI_PAUSED --body false (or delete the variable).
+  hygiene:
+    name: Hygiene
+    if: vars.CI_PAUSED != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        with:
+          python-version: '3.x'
+      - name: Doc style and link checks
+        run: make hygiene
+      - name: Lint workflows (actionlint)
+        run: |
+          set -euo pipefail
+          curl -sSLo al.tgz https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_amd64.tar.gz
+          tar -xzf al.tgz actionlint && rm al.tgz
+          ./actionlint -color
+
+  secrets:
+    name: Secrets scan
+    if: vars.CI_PAUSED != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0 # scan the PR's commit range, not just the tip
+          persist-credentials: false
+      # Pinned engine (version + sha256). Bump deliberately and re-verify the
+      # checksum from the release page.
+      - name: Install gitleaks 8.30.1 (checksum-verified)
+        run: |
+          set -euo pipefail
+          curl -sSLo gl.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gl.tgz" | sha256sum -c -
+          tar -xzf gl.tgz gitleaks && rm gl.tgz
+      - name: Scan for secrets
+        run: ./gitleaks detect --source . --redact
+
+  build-test:
+    name: Build and test
+    if: vars.CI_PAUSED != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Draft PRs skip the heavy suite; marking ready re-triggers it.
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      # Add your toolchain setup here (setup-dotnet / setup-node / setup-java
+      # / flutter-action, pinned by SHA). The Makefile stubs pass until you do.
+      - name: Build
+        run: make ci-build
+      - name: Test
+        run: make ci-test

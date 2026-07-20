@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+#
+# CodeRabbit is the blocking third-party reviewer in this workflow (see
+# docs/process/06-review-guidelines.md). It auto-reviews every push.
+#
+# path_filters keep the bot off files that are records rather than proposals:
+# review logs capture reviews that already happened, and frozen reference
+# drafts are kept verbatim by design. Reviewing either burns cycles without
+# adding signal. Everything else is reviewed as normal. Add your own
+# append-only or generated paths here as the project grows.
+reviews:
+  path_filters:
+    - "!docs/reviews/**"
+    - "!docs/reference/**"

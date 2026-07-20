@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Pre-push backstop. Install once with: make install-hooks
+#
+# Two guarantees, belt-and-suspenders to the server-side ruleset:
+#   1. No direct pushes to the default branch - everything rides a PR.
+#   2. The mechanical hygiene gate passes before anything leaves the machine.
+#
+# This does NOT replace /review-gate: the persona review loop is your
+# responsibility before every push. This hook only fails closed on the cheap
+# mechanical checks.
+set -euo pipefail
+
+default_branch="main"
+
+while read -r _local_ref local_sha remote_ref _remote_sha; do
+  # Deleting a remote ref pushes the zero sha - allow it.
+  if [ "$local_sha" = "0000000000000000000000000000000000000000" ]; then
+    continue
+  fi
+  if [ "$remote_ref" = "refs/heads/$default_branch" ]; then
+    echo "pre-push: direct pushes to '$default_branch' are blocked. Open a PR." >&2
+    exit 1
+  fi
+done
+
+echo "pre-push: running mechanical hygiene gate..."
+if command -v make >/dev/null 2>&1; then
+  make hygiene
+else
+  python3 scripts/check_doc_style.py
+  python3 scripts/check_doc_links.py
+fi
+echo "pre-push: hygiene passed. (Did you run /review-gate?)"

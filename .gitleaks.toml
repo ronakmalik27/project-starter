@@ -1,0 +1,19 @@
+# Gitleaks config. The secret scan is the backstop, not the rule: never write
+# a real secret anywhere in the repo (see docs/process for the secrets policy).
+# Secrets live in their designated homes only - a local secret store in
+# development, a managed vault in production - never in code, config, commits,
+# PR/issue bodies, review comments, or logs.
+
+[extend]
+useDefault = true
+
+# Allowlists must be line-shape-narrow, never path-broad: a real secret pasted
+# into an allowlisted file must still fail the scan. Example (commented) - a
+# committed-by-design ciphertext blob whose decryption needs a vault:
+#
+# [allowlist]
+# description = "Encrypted stack value (safe by design; decryption needs vault RBAC)"
+# regexTarget = "line"
+# regexes = [
+#     '''^\s*encryptedkey: [A-Za-z0-9+/=]+\s*$''',
+# ]

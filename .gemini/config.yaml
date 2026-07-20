@@ -1,0 +1,10 @@
+# Gemini Code Assist (GitHub) configuration.
+#
+# Gemini is the advisory (non-blocking) reviewer in this workflow (see
+# docs/process/06-review-guidelines.md). ignore_patterns mirror
+# .coderabbit.yaml: keep the bot off review logs (records of reviews that
+# already happened) and frozen reference drafts (kept verbatim by design).
+# A bot review of either adds churn, not signal.
+ignore_patterns:
+  - "docs/reviews/**"
+  - "docs/reference/**"

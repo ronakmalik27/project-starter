@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels: [type:chore]
+    # One grouped PR for the week's routine action bumps instead of one PR per
+    # action: each separate PR re-runs CI's hygiene and secrets jobs regardless
+    # of triviality, so grouping cuts the run count directly. update-types is
+    # deliberately minor/patch only - a major-version bump (new tag, possibly
+    # new permissions or behavior) still lands as its own PR for individual
+    # review, and keeps a red grouped PR bisectable to "one routine bump"
+    # rather than masking a major-version regression.
+    groups:
+      github-actions:
+        patterns: ["*"]
+        update-types: [minor, patch]
+
+  # Uncomment the ecosystems your project uses:
+  # - package-ecosystem: nuget
+  #   directory: /src
+  #   schedule: { interval: weekly }
+  #   labels: [type:chore]
+  # - package-ecosystem: npm
+  #   directory: /
+  #   schedule: { interval: weekly }
+  #   labels: [type:chore]
+  # - package-ecosystem: pub
+  #   directory: /app
+  #   schedule: { interval: weekly }
+  #   labels: [type:chore]
+  # - package-ecosystem: pip
+  #   directory: /scripts
+  #   schedule: { interval: weekly }
+  #   labels: [type:chore]

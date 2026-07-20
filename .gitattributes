@@ -1,0 +1,21 @@
+# Normalize line endings: text is LF in the repo, checked out native.
+* text=auto eol=lf
+
+# Scripts must stay LF even on Windows checkouts.
+*.sh   text eol=lf
+*.py   text eol=lf
+
+# Windows-only files.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+# Binaries - never touch.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,6 @@
+# Code owners - the approver of record for every change.
+# Replace with your own account (and, if you have a team, per-path owners).
+# Example per-path ownership:
+#   /docs/            @your-username
+#   /src/payments/    @your-username @a-teammate
+* @your-username

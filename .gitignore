@@ -1,0 +1,55 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vs/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*~
+
+# Secrets / local env (never commit real values - see docs/process)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+appsettings.*.local.json
+
+# .NET
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+project.lock.json
+artifacts/
+TestResults/
+*.trx
+coverage*.xml
+coverage/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+.packages
+*.iml
+
+# Node / web
+node_modules/
+dist/
+.next/
+*.log
+
+# Python (tooling scripts)
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/

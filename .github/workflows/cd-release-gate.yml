@@ -1,0 +1,60 @@
+# cd-release-gate: deploy a chosen build to an environment. This is a STUB -
+# wire it to your cloud before relying on it. It is manual (workflow_dispatch)
+# on purpose: promotion to a real environment should be a deliberate act.
+#
+# Recommended shape (no stored long-lived cloud secret):
+#   - Authenticate to your cloud with GitHub OIDC (federated credentials), not
+#     a stored key. The provider's login action exchanges the workflow's OIDC
+#     token for short-lived credentials.
+#   - Deploy the image digest built by merge-gate (pass it as an input).
+#   - Run a post-deploy health check and fail the job if it is not healthy.
+name: cd-release-gate
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_digest:
+        description: "Image digest to deploy (from merge-gate), e.g. sha256:..."
+        required: true
+      environment:
+        description: "Target environment"
+        required: true
+        default: "staging"
+
+# OIDC needs id-token: write. Keep everything else read-only.
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-${{ github.event.inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy
+    environment: ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      # 1) Authenticate to your cloud with OIDC. Example (fill in and pin):
+      # - name: Cloud login (OIDC)
+      #   uses: <your-cloud>/login@<sha> # e.g. azure/login, aws-actions/configure-aws-credentials, google-github-actions/auth
+      #   with:
+      #     client-id: ${{ vars.DEPLOY_CLIENT_ID }}     # a repo variable, not a secret
+      #     tenant-id: ${{ vars.DEPLOY_TENANT_ID }}
+      #     subscription-id: ${{ vars.DEPLOY_SUBSCRIPTION_ID }}
+
+      # 2) Deploy the chosen digest.
+      - name: Deploy (placeholder)
+        run: |
+          echo "Would deploy digest '${{ github.event.inputs.image_digest }}' to '${{ github.event.inputs.environment }}'."
+          echo "Replace this step with your real deploy (container app, k8s, serverless, ...)."
+
+      # 3) Verify the deployment is healthy, else fail.
+      - name: Post-deploy health check (placeholder)
+        run: echo "Replace with a real health probe against the deployed URL."
