@@ -30,13 +30,16 @@ any tool to work front to back and refine-or-create each doc.
 ```
 AGENTS.md             Canonical agent operating contract (every AI tool reads this)
 CLAUDE.md, GEMINI.md  Per-tool pointers to AGENTS.md + tool-specific notes
+SECURITY.md           Vulnerability-reporting policy
+CHANGELOG.md          Release history (Keep a Changelog)
 .claude/commands/     AI-agent commands: the review + iteration workflow, executable
 .github/              CI (pr-gate, merge-gate, cd stub, secrets sweep), copilot-instructions, templates, ruleset
 docs/
   process/            The reusable workflow: principles, lifecycle, governance,
-                      coding/testing/doc standards, review guidelines, iteration cycle
+                      standards, review, iteration, production-readiness, release
   adr/                Architecture Decision Records: a template + a worked example
   00, 01-15 *.md      Project-doc skeletons (vision, discovery, PRD, ..., brand) to fill in
+  ops/                Incident postmortems (blameless template provided)
   reviews/            Review logs (gate-light, bot-excluded)
   sprints/            One directory per iteration (plan/state/qa/retro)
 scripts/              Doc style + link checkers, git hooks

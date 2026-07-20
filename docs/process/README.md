@@ -27,6 +27,11 @@ the workflow.
   work in iterations.
 - **09-decision-framework.md** - when a decision needs an Architecture
   Decision Record (ADR) and how ADRs move through their lifecycle.
+- **10-production-readiness.md** - the phased checklist of operational,
+  security, and delivery concerns to create or expand as the product approaches
+  production (rather than stubbing them all up front).
+- **11-release-and-versioning.md** - Semantic Versioning, the changelog
+  discipline, and the release-cut flow.
 
 ## The workflow in one view
 
