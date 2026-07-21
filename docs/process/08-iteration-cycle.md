@@ -23,6 +23,12 @@ bookkeeping, and it plus `docs/reviews/` logs are gate-light: a change to them
 runs mechanical checks only (doc style, links), not the full persona doc gate.
 `plan.md`, `qa.md`, and `retro.md` are substantive and stay fully gated.
 
+One repository-level record lives outside the iteration directory:
+`docs/snapshot.md`, a regenerated point-in-time summary of where the project
+stands (milestone and iteration status, built versus planned, doc and test
+coverage, top open risks and debt). The retro regenerates it (step 11). Like
+`state.md` it is a generated record, so it is gate-light, not persona-gated.
+
 ## 2. Plan (`/sprint-plan`)
 
 Open the iteration: one-sentence goal, a small committed set of stories pulled

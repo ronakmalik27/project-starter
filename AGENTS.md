@@ -53,8 +53,9 @@ Full detail: `docs/process/00-principles.md`.
   findings.
 - **Before every merge:** run `/pre-merge-gate` over the PR's cumulative diff
   plus its dependency closure.
-- **Docs:** run `/doc-gate` on any change to `docs/`, `README.md`, or an API
-  spec before pushing.
+- **Docs:** run `/doc-gate` on any change to `docs/`, `README.md`, an API spec,
+  or an agent-contract file (this file, `CLAUDE.md`, `GEMINI.md`,
+  `.github/copilot-instructions.md`) before pushing.
 - Independent bot reviewers review each PR (a blocking one and an advisory one).
 
 The gates and severity rubric live in `docs/process/06-review-guidelines.md`.

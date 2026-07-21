@@ -7,7 +7,9 @@ goal.
 Start a fresh context: load the last retro's next-iteration proposal and its
 filed issues, the Definition of Ready (docs/process/02-governance.md), and the
 current milestone. If `$ARGUMENTS` names a goal it refines the proposal, it
-does not silently replace it.
+does not silently replace it. On the very first iteration there is no prior
+retro: take the goal from `$ARGUMENTS` or `docs/00-vision.md` and pull the first
+stories straight from the backlog.
 
 1. Goal. One sentence: the single milestone outcome this iteration advances.
 2. Select stories. Pull candidates from the backlog / last retro's issues in

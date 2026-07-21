@@ -4,9 +4,11 @@ Run the doc review gate (docs/process/06-review-guidelines.md) on the docs
 changed in the working tree (or the docs named in $ARGUMENTS).
 
 1. Determine scope: `git diff --name-only main` (or $ARGUMENTS) filtered to
-   `docs/`, `README.md`, and any API spec files. Records are exempt
-   (gate-light, mechanical checks only): `docs/reviews/` logs and
-   `docs/reference/` frozen drafts. Substantive docs stay gated.
+   `docs/`, `README.md`, the agent-contract files (`AGENTS.md`, `CLAUDE.md`,
+   `GEMINI.md`, `.github/copilot-instructions.md`), and any API spec files.
+   Gate-light (mechanical checks only, no persona review): `docs/reviews/` logs,
+   `docs/reference/` frozen drafts, `docs/sprints/*/state.md`, and
+   `docs/snapshot.md`. Substantive docs stay gated.
 2. Select personas from the review-guidelines gate table for every touched doc.
 3. Launch persona review agents (parallel where scopes are disjoint). Each
    reviews its docs IN FULL: internal correctness, cross-doc consistency (walk

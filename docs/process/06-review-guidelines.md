@@ -41,7 +41,7 @@ or you dispatch each to a focused agent.
 | Auth / crypto / upload / any new external surface | add Security Engineer |
 | Frontend / UI code | Frontend Engineer (design-token conformance) |
 | CI / infra / `.github/` | DevOps/SRE |
-| Docs process, this file | Engineering lead |
+| Process docs (`docs/process/`) and agent-contract files (AGENTS.md, CLAUDE.md, GEMINI.md, copilot-instructions.md) | Engineering lead |
 
 Each hat reviews the diff IN FULL with surrounding context (read the whole
 touched file, not just the hunk): internal correctness, conformance to the
@@ -79,8 +79,9 @@ until zero Critical/High/Medium remain.
 
 ## 5. The doc review gate
 
-After any change to `docs/`, `README.md`, or an API spec, run `/doc-gate`
-before pushing. It is blocking.
+After any change to `docs/`, `README.md`, an API spec, or an agent-contract
+file (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`),
+run `/doc-gate` before pushing. It is blocking.
 
 1. Pick reviewer hats by scope (section 2's table), at least one.
 2. Each hat reviews IN FULL: internal correctness, cross-doc consistency (walk
@@ -90,10 +91,15 @@ before pushing. It is blocking.
 4. Record findings and resolutions in `docs/reviews/YYYY-MM-DD-<scope>.md`, run
    `make hygiene`, and only then push.
 
-Records are exempt from the gate (they are gate-light, mechanical checks only):
-`docs/reviews/` logs and `docs/reference/` frozen drafts. They are also
-bot-excluded (see `.coderabbit.yaml` / `.gemini/config.yaml`). Substantive docs
-stay gated.
+Records and regenerated bookkeeping are exempt from the gate (they are
+gate-light: mechanical checks only, no persona review): `docs/reviews/` logs,
+`docs/reference/` frozen drafts, `docs/sprints/*/state.md` (append-only
+continuity notes, per 08-iteration-cycle.md), and `docs/snapshot.md` (the
+retro-regenerated repository summary). The logs and frozen drafts are also
+bot-excluded (see `.coderabbit.yaml` / `.gemini/config.yaml`); `state.md` and
+`snapshot.md` stay bot-reviewed, since they are small and the bot check is
+cheap. Substantive docs - including a sprint's `plan.md`, `qa.md`, and
+`retro.md` - stay gated.
 
 ## 6. External third-party reviewers
 
