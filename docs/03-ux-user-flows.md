@@ -15,8 +15,11 @@
 <!-- Multi-tenant SaaS: cover tenant-admin flows (invite a member, manage
      members and roles, tenant settings) and, separately, the platform
      super-admin flow for impersonating a tenant user, including how the UI
-     signals an impersonated session to whoever is using it. See
-     docs/adr/0002-multi-tenancy-and-tenant-isolation.md. -->
+     signals an impersonated session to whoever is using it. If customers
+     subdivide their account, also cover workspace and team management and
+     the workspace switcher. See
+     docs/adr/0002-multi-tenancy-and-tenant-isolation.md and the worked
+     example in docs/design/multi-tenancy.md. -->
 
 ## 4. Screen inventory
 <!-- Every screen or view, with a one-line purpose. -->

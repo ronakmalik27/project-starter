@@ -8,7 +8,10 @@
      tenancy and isolation decision a SaaS project built on this template
      typically makes. It is written stack-agnostic on purpose: adapt the
      specifics (which database, which query layer) to your stack, or replace
-     it outright if your project needs a different model. -->
+     it outright if your project needs a different model. A fuller worked
+     example of the whole control plane (the isolation wiring, the choke
+     point, workspaces, scoped RBAC, teams, provisioning, impersonation, and
+     the grow-into surface) is in docs/design/multi-tenancy.md. -->
 
 ## Context
 
@@ -62,6 +65,22 @@ example `owner > admin > member`), and resource ownership within the tenant
 (the same per-resource check a single-tenant app already needs). Each layer
 is independent and separately testable.
 
+**Sub-tenant structure is an authorization scope, not a second tenant.** A
+customer that subdivides its own account into workspaces (for example
+production, staging, and development, or one per team or project) gets a scope
+inside the tenant, not a new tenant and not a second hard isolation tier.
+Workspace-owned rows carry a workspace discriminator and access is enforced by
+scoped role grants, while the tenant discriminator stays the only hard,
+database-enforced boundary. A workspace that genuinely needs hard isolation
+uses the silo escape hatch below. Roles generalize accordingly: from a fixed
+set into permissions (a closed, application-defined catalogue) composed into
+roles (built-in system roles plus tenant-defined custom roles), granted to
+principals (a user or a team) at a scope (the tenant, or a workspace).
+Effective permissions are the union of the grants that match, resolved per
+request. Adopt the fixed roles first and grow into workspaces, teams, and
+custom roles when a customer needs them; the fixed-role model is the
+degenerate case of this one.
+
 **A platform super-admin plane is separate from tenant roles, not a tenant
 role itself.** Crossing tenants (support tooling, provisioning, platform
 operations) is a distinct capability held by a small, explicitly granted set
@@ -99,6 +118,11 @@ default; silo is the documented exception.
   one) runs before any tenant context exists, so it needs its own atomicity
   story: a failed signup must not leave a tenant with no owner, or a user
   with no tenant.
+- Workspaces and teams are authorization concerns, so they add per-request
+  permission resolution, not new isolation plumbing: the tenant discriminator
+  and its enforcement point stay the only hard boundary. Keep the permission
+  catalogue closed (the application defines the permissions; customers only
+  compose them into roles), or custom roles become an unbounded surface.
 
 ## Alternatives considered
 
@@ -118,3 +142,12 @@ default; silo is the documented exception.
   makes platform-level power a side effect of tenant membership instead of an
   explicitly granted, auditable capability. Rejected: cross-tenant power
   needs to be its own decision, not a role name.
+- **A workspace as its own tenant, or as a second hard isolation tier.**
+  Modeling an intra-account workspace as a separate tenant loses the
+  account-level grouping (billing, admins over all workspaces) and forces a
+  super-tenant concept anyway. Making it a second database-enforced isolation
+  tier breaks the routine "an admin sees across all workspaces" path and
+  multiplies the bypass code that isolation exists to avoid. Rejected in favor
+  of a workspace as an authorization scope, with the silo escape hatch for the
+  rare workspace that needs hard isolation. This mirrors how GCP (organization,
+  folder, project) and GitHub (organization, team, repository) scope access.

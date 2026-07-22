@@ -135,6 +135,8 @@ tool.** That is what keeps them from drifting.
   - what we are building (fill in per section 1).
 - `docs/adr/` - decision records (template + worked examples, including a
   multi-tenancy one for a SaaS project).
+- `docs/design/` - deeper worked-example write-ups a decision needs beyond an
+  ADR (the SaaS control plane: isolation, RBAC, workspaces, teams).
 - `.claude/commands/` - the gates and iteration loop as runnable commands.
 - `.claude/agents/` - example subagents (read-only explorer, per-persona
   reviewers, a doc-author constructor) for tools that support them.

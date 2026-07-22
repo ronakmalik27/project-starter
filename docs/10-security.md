@@ -13,7 +13,12 @@
      accordingly. Isolation tests (no code path, including background jobs,
      can return another tenant's rows) are mandatory, not optional. Any
      support impersonation of a tenant user must be audited, time-boxed, and
-     revocable. See docs/adr/0002-multi-tenancy-and-tenant-isolation.md. -->
+     revocable. Workspace access is authorization, not isolation: the tenant
+     boundary stays the only hard one, so a workspace-access bug must never be
+     able to cross tenants. Keep the permission catalogue closed so custom
+     roles cannot escalate beyond what the application defines. See
+     docs/adr/0002-multi-tenancy-and-tenant-isolation.md and the worked
+     example in docs/design/multi-tenancy.md. -->
 
 ## 3. Authentication
 <!-- How users and services prove identity. -->

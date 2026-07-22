@@ -24,8 +24,12 @@
 <!-- Multi-tenant SaaS: name the choke point every tenant-owned query goes
      through (the one place the tenant boundary is enforced), and how the
      platform super-admin plane stays a separate code path from
-     tenant-scoped request handling, not a tenant role. See
-     docs/adr/0002-multi-tenancy-and-tenant-isolation.md. -->
+     tenant-scoped request handling, not a tenant role. If customers
+     subdivide their account, note that a workspace is an authorization
+     scope, not a second isolation tier: the tenant boundary stays the only
+     hard one, workspace access is resolved per request. See
+     docs/adr/0002-multi-tenancy-and-tenant-isolation.md and the worked
+     example in docs/design/multi-tenancy.md. -->
 
 ## 7. Deployment topology
 <!-- Where components run and how they are connected in each environment. -->
