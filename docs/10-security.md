@@ -9,6 +9,11 @@
 
 ## 2. Threat model
 <!-- The main threats considered and the assumed attacker capabilities. -->
+<!-- Multi-tenant SaaS: cross-tenant data leakage is the top risk, treat it
+     accordingly. Isolation tests (no code path, including background jobs,
+     can return another tenant's rows) are mandatory, not optional. Any
+     support impersonation of a tenant user must be audited, time-boxed, and
+     revocable. See docs/adr/0002-multi-tenancy-and-tenant-isolation.md. -->
 
 ## 3. Authentication
 <!-- How users and services prove identity. -->

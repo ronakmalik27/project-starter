@@ -12,6 +12,11 @@
 
 ## 3. Key user flows
 <!-- Step by step paths through the product for its main tasks. -->
+<!-- Multi-tenant SaaS: cover tenant-admin flows (invite a member, manage
+     members and roles, tenant settings) and, separately, the platform
+     super-admin flow for impersonating a tenant user, including how the UI
+     signals an impersonated session to whoever is using it. See
+     docs/adr/0002-multi-tenancy-and-tenant-isolation.md. -->
 
 ## 4. Screen inventory
 <!-- Every screen or view, with a one-line purpose. -->

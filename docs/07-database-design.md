@@ -12,6 +12,12 @@
 
 ## 3. Tables
 <!-- Table definitions: columns, types, and constraints. -->
+<!-- Multi-tenant SaaS: give every tenant-owned table a tenant-id
+     discriminator and enforce it at one choke point (row-level security if
+     the database supports it, otherwise a single query layer, never inline
+     per handler). Note the silo (schema or database per tenant) escape
+     hatch for tenants that need stronger isolation. See
+     docs/adr/0002-multi-tenancy-and-tenant-isolation.md. -->
 
 ## 4. Indexes
 <!-- Indexes and the queries each one supports. -->

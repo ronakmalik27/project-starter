@@ -38,7 +38,8 @@ CHANGELOG.md          Release history (Keep a Changelog)
 docs/
   process/            The reusable workflow: principles, lifecycle, governance,
                       standards, review, iteration, production-readiness, release
-  adr/                Architecture Decision Records: a template + a worked example
+  adr/                Architecture Decision Records: a template + worked examples
+                      (docs-first, and multi-tenancy for a SaaS project)
   00, 01-15 *.md      Project-doc skeletons (vision, discovery, PRD, ..., brand) to fill in
   ops/                Incident postmortems (blameless template provided)
   reviews/            Review logs (gate-light, bot-excluded)

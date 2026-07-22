@@ -9,6 +9,12 @@
 
 ## 2. Functional requirements
 <!-- List requirements with stable ids, for example FR-1, FR-2. -->
+<!-- Multi-tenant SaaS: if this project serves more than one tenant per
+     deployment, add requirements for the tenancy model, the isolation
+     guarantee (what a tenant may never see of another), tenant roles, what
+     a platform super-admin can do that a tenant-admin cannot, and any
+     per-tenant limits or seats. See
+     docs/adr/0002-multi-tenancy-and-tenant-isolation.md. -->
 
 ## 3. System invariants
 <!-- Rules that must never be violated, ids like INV-1; cover value-bearing or must-not-corrupt data. -->
