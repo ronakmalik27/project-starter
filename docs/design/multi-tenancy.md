@@ -481,7 +481,8 @@ rather than a rewrite. Build on demand, not ahead of need:
   permission catalogue (section 10) and features per plan.
 - **A first-class, queryable audit log**: distinct from the domain-event
   stream; a projection off the outbox (impersonation is the first audited
-  action).
+  action). DESIGNED and being built out - see
+  [audit-log.md](audit-log.md).
 - **Outbound webhooks**: a consumer fanning events to tenant-registered
   endpoints, reusing the outbox's at-least-once delivery.
 - **Data export and account deletion (GDPR/DSAR)**: tenant-scoped reads and a
