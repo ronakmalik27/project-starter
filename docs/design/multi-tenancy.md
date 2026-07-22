@@ -442,9 +442,9 @@ tenant-admin portal and the platform super-admin portal are UI built over them.
   (the data-portability and erasure path, section 18). Suspending stops new
   access at once; short-lived tokens age out within the access window.
 - **Workspace.** Onboard by create (section 7). Offboard by archive
-  (`active -> archived`): its resources go read-only and its scoped grants stop
-  conferring access, but nothing is destroyed until an explicit purge, so an
-  archive is reversible.
+  (`active -> archived`): its resources become read-only (workspace-scoped writes
+  are refused with a stable problem) and no new resources or grants can be created
+  in it, while reads still work; nothing is destroyed, so unarchive restores it.
 - **Team.** Onboard by create, then add and remove members. Offboard by delete,
   removing the team's grants first so none dangles.
 - **Person (membership).** Onboard by invite and accept, or as a self-serve
