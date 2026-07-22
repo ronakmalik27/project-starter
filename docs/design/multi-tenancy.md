@@ -485,7 +485,8 @@ rather than a rewrite. Build on demand, not ahead of need:
   action). DESIGNED and being built out - see
   [audit-log.md](audit-log.md).
 - **Outbound webhooks**: a consumer fanning events to tenant-registered
-  endpoints, reusing the outbox's at-least-once delivery.
+  endpoints, reusing the outbox's at-least-once delivery. DESIGNED and
+  being built out - see [webhooks.md](webhooks.md).
 - **Data export and account deletion (GDPR/DSAR)**: tenant-scoped reads and a
   soft-delete-to-hard-delete lifecycle on the tenant status field.
 - **In-app notifications, usage quotas, data residency**: notifications ride
