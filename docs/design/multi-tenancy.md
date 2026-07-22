@@ -479,7 +479,9 @@ rather than a rewrite. Build on demand, not ahead of need:
   change.
 - **Billing (plans, subscriptions, seats, metering) and entitlements**: plan
   and seat-limit already exist on the tenant; entitlements gate the
-  permission catalogue (section 10) and features per plan.
+  permission catalogue (section 10) and features per plan. DESIGNED and
+  being built out - see
+  [billing-and-entitlements.md](billing-and-entitlements.md).
 - **A first-class, queryable audit log**: distinct from the domain-event
   stream; a projection off the outbox (impersonation is the first audited
   action). DESIGNED and being built out - see
