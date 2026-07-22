@@ -482,6 +482,11 @@ rather than a rewrite. Build on demand, not ahead of need:
   permission catalogue (section 10) and features per plan. DESIGNED and
   being built out - see
   [billing-and-entitlements.md](billing-and-entitlements.md).
+- **Feature flags**: rollout and kill-switch gating, the operational
+  counterpart to entitlements above - a global operator catalogue plus
+  tenant and workspace overrides (section 7), fail-closed where
+  entitlements fail open. DESIGNED and being built out - see
+  [feature-flags.md](feature-flags.md).
 - **A first-class, queryable audit log**: distinct from the domain-event
   stream; a projection off the outbox (impersonation is the first audited
   action). DESIGNED and being built out - see
