@@ -471,7 +471,8 @@ into. None of this is built here; each hangs off an existing mechanism
 rather than a rewrite. Build on demand, not ahead of need:
 
 - **API keys, service accounts, PATs**: a non-human principal type, hashed
-  like other one-time tokens, carrying scoped grants (section 8).
+  like other one-time tokens, carrying scoped grants (section 8). DESIGNED
+  and being built out - see [service-accounts.md](service-accounts.md).
 - **SSO (SAML/OIDC) and SCIM**: a per-tenant identity-provider config; SCIM
   maps directory groups to teams (section 9) and roles.
 - **MFA/TOTP**: an identity-module add-on on the sign-in path; no tenancy
