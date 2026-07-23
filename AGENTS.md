@@ -94,7 +94,7 @@ Work in iterations (`/sprint-plan`, `/sprint-execute`, `/sprint-qa`,
 - **Data boundaries:** never feed a secret, credential, or regulated/sensitive
   data to a model or service that is not cleared for it. When in doubt, do not.
   Consumer paid plans commonly **default to training on your conversations** and
-  retain them for years — turn each vendor's training/activity toggle off before
+  retain them for years - turn each vendor's training/activity toggle off before
   routing any proprietary content (brand, architecture, security model, pricing),
   and know that some model tiers keep a mandatory retention floor regardless.
 
