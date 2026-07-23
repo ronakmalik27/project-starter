@@ -505,9 +505,11 @@ rather than a rewrite. Build on demand, not ahead of need:
   window, while a usage quota enforces a commercial ceiling per tenant over a
   billing period; the two compose but share no mechanism. DESIGNED and being
   built out - see [quotas.md](quotas.md).
-- **In-app notifications, data residency**: notifications ride the existing
-  notification/consumer pattern; residency rides the silo indirection
-  (section 16).
+- **In-app notifications**: a per-recipient projection off the existing
+  event/consumer spine, the same shape as the audit log but keyed to one
+  user instead of the whole tenant. DESIGNED and being built out - see
+  [in-app-notifications.md](in-app-notifications.md).
+- **Data residency**: rides the silo indirection (section 16).
 - **Global role templates and platform policy defaults**: the super-admin plane
   authors role templates seeded into every tenant, plus platform-wide defaults
   (password, session, lockout policy) a tenant inherits and may tighten.
