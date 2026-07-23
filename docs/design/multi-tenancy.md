@@ -496,9 +496,16 @@ rather than a rewrite. Build on demand, not ahead of need:
   being built out - see [webhooks.md](webhooks.md).
 - **Data export and account deletion (GDPR/DSAR)**: tenant-scoped reads and a
   soft-delete-to-hard-delete lifecycle on the tenant status field.
-- **In-app notifications, usage quotas, data residency**: notifications ride
-  the existing notification/consumer pattern; quotas ride the rate limiter;
-  residency rides the silo indirection (section 16).
+- **Usage quotas**: per-tenant, plan-driven limits on resource counts
+  (workspaces, seats) and metered consumption (API calls, jobs run) over a
+  billing period. Distinct from the edge rate limiter: that limiter throttles
+  abuse by IP or credential regardless of tenant or plan, on a seconds-scale
+  window, while a usage quota enforces a commercial ceiling per tenant over a
+  billing period; the two compose but share no mechanism. DESIGNED and being
+  built out - see [quotas.md](quotas.md).
+- **In-app notifications, data residency**: notifications ride the existing
+  notification/consumer pattern; residency rides the silo indirection
+  (section 16).
 - **Global role templates and platform policy defaults**: the super-admin plane
   authors role templates seeded into every tenant, plus platform-wide defaults
   (password, session, lockout policy) a tenant inherits and may tighten.
