@@ -11,6 +11,11 @@ to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 - Initial project scaffold.
 
 ### Changed
+- AGENTS.md §5 (AI-assisted development): add "spend quota by the reset clock"
+  guidance for working across multiple fixed-quota subscriptions (drain the
+  fastest-resetting/cheapest pool first, reserve the scarcest for what only it
+  can do, exemplar-then-replicate), and extend the data-boundaries rule to cover
+  the consumer-plan training-default / retention-toggle caveat.
 
 ### Fixed
 

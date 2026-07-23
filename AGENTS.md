@@ -75,6 +75,12 @@ Work in iterations (`/sprint-plan`, `/sprint-execute`, `/sprint-qa`,
   Reserve the most capable/expensive models for hard reasoning, ambiguous
   design, or high-stakes changes. Money-path, security, and hard-to-reverse work
   justify spending more; routine edits do not.
+- **Spend quota by the reset clock, not the open tab.** When you work across
+  several fixed-quota subscriptions, they refill on different cadences (rolling-
+  hour, daily, weekly). Drain the fastest-resetting / cheapest pool first
+  (use-it-or-lose-it quota is wasted otherwise) and reserve the scarcest pool for
+  the work only it can do. Build the first exemplar of a repeated pattern on the
+  capable model, then replicate it on the cheap/fast one.
 - **Manage context deliberately.** Load the minimum a task needs (its docs, the
   code it touches, the decisions it must honor); expand on purpose, do not replay
   whole histories or rescan the repo.
@@ -87,6 +93,10 @@ Work in iterations (`/sprint-plan`, `/sprint-execute`, `/sprint-qa`,
   PR body names the models used.
 - **Data boundaries:** never feed a secret, credential, or regulated/sensitive
   data to a model or service that is not cleared for it. When in doubt, do not.
+  Consumer paid plans commonly **default to training on your conversations** and
+  retain them for years — turn each vendor's training/activity toggle off before
+  routing any proprietary content (brand, architecture, security model, pricing),
+  and know that some model tiers keep a mandatory retention floor regardless.
 
 ## 6. Documentation sync (this is load-bearing)
 
