@@ -513,6 +513,8 @@ rather than a rewrite. Build on demand, not ahead of need:
 - **Global role templates and platform policy defaults**: the super-admin plane
   authors role templates seeded into every tenant, plus platform-wide defaults
   (password, session, lockout policy) a tenant inherits and may tighten.
+  DESIGNED and being built out - see
+  [role-templates-and-policy-defaults.md](role-templates-and-policy-defaults.md).
 - **A policy engine (ABAC)**: conditional grants (time, IP, resource attributes)
   via an engine such as Cedar or Open Policy Agent, evaluated at the same
   per-request permission check (section 8); RBAC stays the default, ABAC layers
