@@ -519,4 +519,5 @@ rather than a rewrite. Build on demand, not ahead of need:
 - **A policy engine (ABAC)**: conditional grants (time, IP, resource attributes)
   via an engine such as Cedar or Open Policy Agent, evaluated at the same
   per-request permission check (section 8); RBAC stays the default, ABAC layers
-  on when a rule needs a condition.
+  on when a rule needs a condition. DESIGNED and being built out - see
+  [abac.md](abac.md).
