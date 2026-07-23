@@ -476,7 +476,7 @@ rather than a rewrite. Build on demand, not ahead of need:
 - **SSO (SAML/OIDC) and SCIM**: a per-tenant identity-provider config; SCIM
   maps directory groups to teams (section 9) and roles.
 - **MFA/TOTP**: an identity-module add-on on the sign-in path; no tenancy
-  change.
+  change. DESIGNED and being built out - see [mfa-totp.md](mfa-totp.md).
 - **Billing (plans, subscriptions, seats, metering) and entitlements**: plan
   and seat-limit already exist on the tenant; entitlements gate the
   permission catalogue (section 10) and features per plan. DESIGNED and
