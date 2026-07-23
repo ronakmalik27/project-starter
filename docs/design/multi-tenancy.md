@@ -495,7 +495,9 @@ rather than a rewrite. Build on demand, not ahead of need:
   endpoints, reusing the outbox's at-least-once delivery. DESIGNED and
   being built out - see [webhooks.md](webhooks.md).
 - **Data export and account deletion (GDPR/DSAR)**: tenant-scoped reads and a
-  soft-delete-to-hard-delete lifecycle on the tenant status field.
+  soft-delete-to-hard-delete lifecycle on the tenant status field. DESIGNED
+  and being built out - see
+  [data-export-and-erasure.md](data-export-and-erasure.md).
 - **Usage quotas**: per-tenant, plan-driven limits on resource counts
   (workspaces, seats) and metered consumption (API calls, jobs run) over a
   billing period. Distinct from the edge rate limiter: that limiter throttles
