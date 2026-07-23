@@ -474,7 +474,8 @@ rather than a rewrite. Build on demand, not ahead of need:
   like other one-time tokens, carrying scoped grants (section 8). DESIGNED
   and being built out - see [service-accounts.md](service-accounts.md).
 - **SSO (SAML/OIDC) and SCIM**: a per-tenant identity-provider config; SCIM
-  maps directory groups to teams (section 9) and roles.
+  maps directory groups to teams (section 9) and roles. DESIGNED and being
+  built out - see [sso-and-scim.md](sso-and-scim.md).
 - **MFA/TOTP**: an identity-module add-on on the sign-in path; no tenancy
   change. DESIGNED and being built out - see [mfa-totp.md](mfa-totp.md).
 - **Billing (plans, subscriptions, seats, metering) and entitlements**: plan
